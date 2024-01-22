@@ -1,0 +1,3 @@
+[submodule "PySOMVis"]
+	path = PySOMVis
+	url = git@github.com:markhun/PySOMVis.git
