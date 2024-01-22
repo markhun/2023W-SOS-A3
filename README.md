@@ -1,11 +1,6 @@
 # 2023W-SOS-A3 - LabelSOM visualization
 
-```
-git submodule update --init --recursive
-```
-
-
-# Setup development environment
+## Setup development environment
 
 1. Setup Python venv and install necessary dependencies:
 
@@ -35,3 +30,5 @@ jupyter-lab
 
 The jupyter-lab server will be running at `http://localhost:8888/`
 
+
+The jupyter notebook provided by the course can be found at `PySOMVis/PySOMVis/coding_assignment.ipynb`.

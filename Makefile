@@ -6,9 +6,13 @@ REQUIREMENTS := requirements.txt
 .PHONY: clean
 
 
-dev: venv requirements
+dev: setup-submodules venv requirements
+
 	@printf "\n\nDevelopment Environment is now setup\n"
 	@printf "Run 'source $(VENV)/bin/activate' to enter virtual environment\n"
+
+setup-submodules:
+	@git submodule update --init --recursive
 
 venv:
 	@python3.9 -m venv $(VENV)
