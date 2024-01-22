@@ -1,0 +1,12 @@
+{
+    "autoDocstring.docstringFormat": "numpy-notypes",
+    "editor.formatOnSave": true,
+    "python.analysis.importFormat": "relative",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.codeActionsOnSave": {"source.organizeImports": true },
+    },
+    "isort.args":["--profile", "black"],
+    "git.inputValidationSubjectLength": 50,
+    "git.inputValidationLength": 72,
+}
