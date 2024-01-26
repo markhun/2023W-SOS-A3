@@ -1,0 +1,23 @@
+#clusters prop file
+# somtoolbox [GrowingSOM, --numberWinners, 300, --cpus, 8, 
+#   C:\Users\Leonid\UNIVERSITY\SOS\Exercise 3\Java SOM toolbox\trainedData\10clusters\10clusters.prop]
+#
+#Tue Jan 23 21:51:48 CET 2024
+isNormalized=no
+learnRate=0.7
+metricName=at.tuwien.ifs.somtoolbox.layers.metrics.L2Metric
+
+#this is important
+growthQualityMeasureName=QuantizationError.QE_Map
+
+namePrefix=10clusters
+numIterations=100000
+outputDirectory=C\:\\Users\\Leonid\\UNIVERSITY\\SOS\\Exercise 3\\Java SOM toolbox\\trainedData\\10clusters\\10x10
+randomSeed=7
+sparseData=no
+tau=1.0
+templateFileName=C\:\\Users\\Leonid\\UNIVERSITY\\SOS\\Exercise 3\\Java SOM toolbox\\doc\\datasets\\10clusters\\10clusters.tv
+vectorFileName=C\:\\Users\\Leonid\\UNIVERSITY\\SOS\\Exercise 3\\Java SOM toolbox\\doc\\datasets\\10clusters\\10clusters.vec
+workingDirectory=C\:\\Users\\Leonid\\UNIVERSITY\\SOS\\Exercise 3\\Java SOM toolbox\\trained data\\10clusters
+xSize=10
+ySize=10

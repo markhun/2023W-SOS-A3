@@ -1,0 +1,37 @@
+$TYPE som
+$GRID_TOPOLOGY planar
+$GRID_LAYOUT rectangular
+$XDIM 10
+$YDIM 10
+$ZDIM 1
+$VEC_DIM 3
+$STORAGE_DATE 26/01/2024, 20:23
+$TRAINING_TIME 
+$LEARNRATE_TYPE exponential
+$LEARNRATE_INIT 0.7
+$NEIGHBORHOOD_TYPE exponential
+$NEIGHBORHOOD_INIT 5.0
+$RAND_INIT 7
+$ITERATIONS_TOTAL 100000
+$NR_TRAINVEC_TOTAL 1000
+$ADAPTIVE_COORDINATES_THRESHOLD 
+$VEC_NORMALIZED false
+$QUANTERROR_MAP 0.9749270910988376
+$QUANTERROR_VEC 9.749270910988376E-4
+$URL_TRAINING_VEC C:\Users\Leonid\UNIVERSITY\SOS\Exercise 3\Java SOM toolbox\doc\datasets\chainlink\chainlink.vec
+$URL_TRAINING_VEC_DESCR 
+$URL_WEIGHT_VEC C:\Users\Leonid\UNIVERSITY\SOS\Exercise 3\Java SOM toolbox\trainedData\chainlink\10x10\chainlink.wgt
+$URL_QUANTERR_MAP 
+$URL_MAPPED_INPUT_VEC 
+$URL_MAPPED_INPUT_VEC_DESCR 
+$URL_UNIT_DESCR C:\Users\Leonid\UNIVERSITY\SOS\Exercise 3\Java SOM toolbox\trainedData\chainlink\10x10\chainlink.unit
+$URL_TEMPLATE_VECTOR C:\Users\Leonid\UNIVERSITY\SOS\Exercise 3\Java SOM toolbox\doc\datasets\chainlink\chainlink.tv
+$URL_DATA_WINNER_MAPPING C:\Users\Leonid\UNIVERSITY\SOS\Exercise 3\Java SOM toolbox\trainedData\chainlink\10x10\chainlink.dwm
+$URL_CLASS_INFO 
+$URL_LABELS 
+$METRIC at.tuwien.ifs.somtoolbox.layers.metrics.L2Metric
+$LAYER_REVISION $Revision: 4300 $
+$DESCRIPTION 
+$AVAILABLE_VIS 
+$DATA_TYPE unknown
+$DATA_DIM 

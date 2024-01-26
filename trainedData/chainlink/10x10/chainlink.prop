@@ -1,0 +1,23 @@
+#chainlink prop file
+# somtoolbox [GrowingSOM, --numberWinners, 300, --cpus, 8, 
+#   C:\Users\Leonid\UNIVERSITY\SOS\Exercise 3\Java SOM toolbox\trainedData\chainlink\chainlink.prop]
+#
+#Tue Jan 23 21:51:48 CET 2024
+isNormalized=no
+learnRate=0.7
+metricName=at.tuwien.ifs.somtoolbox.layers.metrics.L2Metric
+
+#this is important
+growthQualityMeasureName=QuantizationError.QE_Map
+
+namePrefix=chainlink
+numIterations=100000
+outputDirectory=C\:\\Users\\Leonid\\UNIVERSITY\\SOS\\Exercise 3\\Java SOM toolbox\\trainedData\\chainlink\\10x10
+randomSeed=7
+sparseData=no
+tau=1.0
+templateFileName=C\:\\Users\\Leonid\\UNIVERSITY\\SOS\\Exercise 3\\Java SOM toolbox\\doc\\datasets\\chainlink\\chainlink.tv
+vectorFileName=C\:\\Users\\Leonid\\UNIVERSITY\\SOS\\Exercise 3\\Java SOM toolbox\\doc\\datasets\\chainlink\\chainlink.vec
+workingDirectory=C\:\\Users\\Leonid\\UNIVERSITY\\SOS\\Exercise 3\\Java SOM toolbox\\trained data\\chainlink
+xSize=10
+ySize=10
