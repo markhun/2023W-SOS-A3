@@ -42,5 +42,5 @@ clean-venv:
 
 install:
 	@. $(VENV)/bin/activate && \
-		pip install -e ./labelsom
+		pip install -e ./labelsom && \
 		pip install -e ./PySOMVis
