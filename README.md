@@ -8,7 +8,7 @@
 make dev
 ```
 
-2. Install `labelsom` library
+2. Install `labelsom` and `PySOMVis` library
 
 ```
 make install
