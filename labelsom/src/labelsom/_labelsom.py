@@ -215,7 +215,7 @@ def pretty_print_label_matrix(
 
     def _pretty_print_lables(lables: list[Label]):
         """Helper function to style table cells"""
-        out = "<table>"
+        out = "<table class='SOMlabeling'>"
 
         for label in lables:
             mean_td = (
@@ -245,6 +245,10 @@ def pretty_print_label_matrix(
             [
                 {"selector": ".mean", "props": [("text-align", "left")]},
                 {"selector": ".qe", "props": [("text-align", "left")]},
+                {
+                    "selector": "tr",
+                    "props": [("background", "none")],
+                },  # Needed to overwrite jupyter CSS
             ]
         )
         return styler
