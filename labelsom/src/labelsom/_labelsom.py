@@ -37,7 +37,7 @@ def generate_unit_idx_to_mapped_indices_mapping(m, n, weights, input_data):
         hit_histogram[unit_index] += 1
         unit_i_to_mapped_inputs[unit_index].append(input_datum_i)
 
-    return unit_i_to_mapped_inputs, hit_histogram
+    return unit_i_to_mapped_inputs, hit_histogram.reshape(m, n)
 
 
 def _select_top_labels(labels, number_of_labels_to_generate, dim):
