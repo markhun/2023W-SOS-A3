@@ -14,6 +14,9 @@ class Label:
     mean: float
     quantization_error: float
 
+    def __repr__(self):
+        return f"{self.label}"
+
 
 def generate_unit_idx_to_mapped_indices_mapping(m, n, weights, input_data):
     """Find mapped units similar to `PySOMVis/coding_assigment:HitHist` implementation
