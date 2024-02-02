@@ -4,6 +4,7 @@ from dataclasses import dataclass
 
 import numpy as np
 import numpy.typing as npt
+import pandas as pd
 
 LOGGER = logging.getLogger(__name__)
 
@@ -139,3 +140,114 @@ def generate_label_for_unit(
     labels = sorted(labels, key=lambda label: (-label.mean, label.quantization_error))
 
     return labels
+
+
+def generate_label_matrix_and_hit_histogram(
+    m: int,
+    n: int,
+    weights: npt.ArrayLike,
+    input_data: npt.ArrayLike,
+    attribute_names: list[str],
+    number_of_labels_to_generate: int,
+    ignore_labels_with_zero: bool,
+) -> tuple[npt.ArrayLike, npt.ArrayLike]:
+    """Generate two numpy matrices of dimension m * n for the given SOM data.
+
+    1. A matrix containing the `labelsom.Label`s for each unit.
+    2. A hit histogram matrix
+
+    Parameters
+    ----------
+    m
+        Y dimension of the given SOM data.
+    n
+        X dimension of the given SOM data
+    weights
+        The weight vectors of the given SOM.
+    input_data
+        The input vectors for the given SOM.
+    attribute_names
+        The attribute names to use for labeling.
+    number_of_labels_to_generate
+        Number of labels to generate per uni.
+    ignore_labels_with_zero
+        If labels with a mean of 0 should be ignored.
+
+    Returns
+    -------
+    tuple
+        1.  A matrix containing the `labelsom.Label`s for each unit.
+        2. A hit histogram matrix
+    """
+
+    unit_idx_to_mapped_indices, hit_histogram = (
+        generate_unit_idx_to_mapped_indices_mapping(
+            m=m,
+            n=n,
+            weights=weights,
+            input_data=input_data,
+        )
+    )
+
+    label_matrix = np.empty(m * n, dtype=object)
+
+    for unit_idx in range(m * n):
+        labels = generate_label_for_unit(
+            vec_dim=len(attribute_names),
+            mapped_inputs=input_data.take(unit_idx_to_mapped_indices[unit_idx], axis=0),
+            weight_vector=weights[unit_idx],
+            attribute_names=attribute_names,
+            number_of_labels_to_generate=number_of_labels_to_generate,
+            ignore_labels_with_zero=ignore_labels_with_zero,
+        )
+        # print(f"{unit_idx=} : {labels=}")
+        label_matrix[unit_idx] = labels
+
+    return label_matrix.reshape(m, n), hit_histogram
+
+
+def pretty_print_label_matrix(
+    label_matrix: npt.ArrayLike,
+    hit_histogram: npt.ArrayLike,
+    include_mean: bool,
+    include_quantization_error: bool,
+):
+
+    def _pretty_print_lables(lables: list[Label]):
+        """Helper function to style table cells"""
+        out = "<table>"
+
+        for label in lables:
+            mean_td = (
+                "<td class='mean'>m:{:.2f}</td>".format(label.mean)
+                if include_mean
+                else ""
+            )
+            qe_td = (
+                "<td class='qe'>qe:{:.2f}</td>".format(label.quantization_error)
+                if include_quantization_error
+                else ""
+            )
+
+            out += "<tr>"
+            out += "<td>" + str(label.label) + "</td>" + mean_td + qe_td
+            out += "</tr>"
+
+        out += "</table>"
+        return out
+
+    def _style_label_table(styler):
+        """Styling function, which matches signature to be passed to Panda's `style.pipe()`"""
+        styler.format(_pretty_print_lables)
+        styler.background_gradient(axis=None, cmap="Reds", gmap=hit_histogram)
+        styler.set_properties(**{"text-align": "left"})
+        styler.set_table_styles(
+            [
+                {"selector": ".mean", "props": [("text-align", "left")]},
+                {"selector": ".qe", "props": [("text-align", "left")]},
+            ]
+        )
+        return styler
+
+    label_table = pd.DataFrame(label_matrix)
+    return label_table.style.pipe(_style_label_table)
