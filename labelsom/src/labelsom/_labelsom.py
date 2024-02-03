@@ -1,6 +1,7 @@
 import logging
 from collections import defaultdict
 from dataclasses import dataclass
+from pathlib import Path
 
 import numpy as np
 import numpy.typing as npt
@@ -212,6 +213,7 @@ def pretty_print_label_matrix(
     include_mean: bool,
     include_quantization_error: bool,
 ):
+    """Print a labeling matrix and the corresponding hit histogram data as an HTML table."""
 
     def _pretty_print_lables(lables: list[Label]):
         """Helper function to style table cells"""
@@ -239,7 +241,6 @@ def pretty_print_label_matrix(
     def _style_label_table(styler):
         """Styling function, which matches signature to be passed to Panda's `style.pipe()`"""
         styler.format(_pretty_print_lables)
-        styler.background_gradient(axis=None, cmap="Reds", gmap=hit_histogram)
         styler.set_properties(**{"text-align": "left"})
         styler.set_table_styles(
             [
@@ -251,7 +252,52 @@ def pretty_print_label_matrix(
                 },  # Needed to overwrite jupyter CSS
             ]
         )
+        styler.background_gradient(axis=None, cmap="Reds", gmap=hit_histogram)
         return styler
 
     label_table = pd.DataFrame(label_matrix)
     return label_table.style.pipe(_style_label_table)
+
+
+def write_labelsom_to_file(
+    label_matrix: npt.ArrayLike,
+    hit_histogram: npt.ArrayLike,
+    include_mean: bool,
+    include_quantization_error: bool,
+    directory_to_write_file_to: Path,
+    file_name=None,
+):
+    directory_to_write_file_to.mkdir(parents=True, exist_ok=True)
+
+    if file_name:
+        out_file = directory_to_write_file_to / f"{file_name}.html"
+    else:
+        out_file = directory_to_write_file_to / "labelsom.html"
+
+    styler = pretty_print_label_matrix(
+        label_matrix,
+        hit_histogram,
+        include_mean,
+        include_quantization_error,
+    )
+
+    styler.set_table_styles(
+        [
+            {
+                "selector": ".SOMLabeling",
+                "props": [
+                    ("background", "inherit"),
+                    ("background-clip", "text"),
+                    ("-webkit-background-clip", "text"),
+                    ("color", "#000000"),
+                    ("mix-blend-mode", "darken"),
+                ],
+            },  # Ensures that labeling text is readable even on cells with darker background
+        ]
+    )
+
+    html = styler.to_html()
+
+    out_file.write_text(html)
+
+    return out_file
