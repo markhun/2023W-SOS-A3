@@ -1,5 +1,11 @@
 # 2023W-SOS-A3 - LabelSOM visualization
 
+The [labelsom notebook](./labelsom.ipynb) can be found in an HTML and PDF version.  
+__Attention!__: Colors may not be shown correctly in the PDF export.
+
+- [labelsom notebook as HTML](./SOS2023_ExSOM_group_coding_topic_d_00828589_01503441_01634039.html)
+- [labelsom notebook as PDF](./SOS2023_ExSOM_group_coding_topic_d_00828589_01503441_01634039.pdf)
+
 # Prerequisites
 
 This repository contains `PySOMVis` as a git submodule.
