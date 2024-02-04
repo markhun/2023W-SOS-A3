@@ -31,7 +31,8 @@ def generate_unit_idx_to_mapped_indices_mapping(m, n, weights, input_data):
     unit_i_to_qe_vector = {}
 
     for input_datum_i, input_vector in enumerate(input_data):
-        qe_vector = np.sum(np.sqrt(np.power(weights - input_vector, 2)), axis=1)
+
+        qe_vector = np.sqrt(np.sum(np.power(weights - input_vector, 2), axis=1))
 
         unit_index = np.argmin(qe_vector)
         unit_index = int(unit_index)  # cast np.int32 datatype to python integer
